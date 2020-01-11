@@ -39,17 +39,28 @@ class BudgetManager {
   }
 }
 
+class SpecificMonth {
+  SpecificMonth(this.year, this.month);
+
+  int year;
+  int month;
+}
+
+extension DateExtension on DateTime {
+  get specificMonth => SpecificMonth(this.year, this.month);
+}
+
 class MonthlyBudget {
   MonthlyBudget({this.id, this.name, this.moneyAmount});
 
   int id;
   String name;
   int moneyAmount;
+  List<Expense> expenses;
 }
 
 class Expense {
   int id;
   String description;
   int moneyAmount;
-  MonthlyBudget budget;
 }

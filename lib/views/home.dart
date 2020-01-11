@@ -1,5 +1,5 @@
-import 'package:budgeting_app/budget_manager.dart';
-import 'package:budgeting_app/widgets/budget.dart';
+import 'package:budgeting_app/services/budget_manager.dart';
+import 'package:budgeting_app/widgets/budget_display.dart';
 import 'package:flutter/material.dart';
 import 'package:inject/inject.dart';
 
@@ -27,18 +27,17 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   _MyHomePageState(this._budgetManager);
 
-  int _counter = 0;
   final BudgetManager _budgetManager;
+  var _budgets = <MonthlyBudget>[];
 
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
+  Future<void> reloadBudgets() async {
+    _budgets = await _budgetManager.getBudgets();
+  }
+
+  @override
+  void initState() {
+//    _budgetManager.getBudgets().then()
+    super.initState();
   }
 
   @override
@@ -66,13 +65,13 @@ class _MyHomePageState extends State<MyHomePage> {
             // data loaded:
             final budgets = snapshot.data;
             return ListView(
-              children: [for (var budget in budgets) Budget(budget)],
+              children: [for (var budget in budgets) BudgetDisplay(budget)],
             );
           }
         },
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: () {},
         tooltip: 'Increment',
         child: Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
