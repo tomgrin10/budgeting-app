@@ -31,13 +31,17 @@ class _MyHomePageState extends State<MyHomePage> {
   var _budgets = <MonthlyBudget>[];
 
   Future<void> reloadBudgets() async {
-    _budgets = await _budgetManager.getBudgets();
+    var budgets = await _budgetManager.getBudgets();
+
+    setState(() {
+      _budgets = budgets;
+    });
   }
 
   @override
   void initState() {
-//    _budgetManager.getBudgets().then()
     super.initState();
+    reloadBudgets();
   }
 
   @override

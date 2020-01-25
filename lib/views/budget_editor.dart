@@ -1,11 +1,10 @@
 import 'package:budgeting_app/services/budget_manager.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class BudgetEditor extends StatefulWidget {
   final MonthlyBudget budget;
 
-  const BudgetEditor(this.budget, {Key key}) : super(key: key);
+  const BudgetEditor({this.budget, Key key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {

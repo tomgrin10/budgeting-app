@@ -1,6 +1,5 @@
 import 'package:budgeting_app/services/budget_manager.dart';
-import 'package:budgeting_app/widgets/budget_editor.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:budgeting_app/views/expense_editor.dart';
 import 'package:flutter/material.dart';
 
 class BudgetDisplay extends StatelessWidget {
@@ -19,7 +18,7 @@ class BudgetDisplay extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => BudgetEditor(budget),
+              builder: (context) => ExpenseEditor(),
             ),
           );
         },
